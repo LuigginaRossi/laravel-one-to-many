@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Models\Category;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -20,6 +21,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects= Project::All();
+        // $types = Type::all();
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -30,7 +32,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types' ));
     }
 
     /**
@@ -46,17 +49,21 @@ class ProjectController extends Controller
          if(key_exists('cover_img', $data)){
             $path= Storage::put('projects', $data['cover_img']);
          }
+        
+        $types = Type::all();
+         
 
          $project= Project::create([
              ...$data,
              "user_id" =>Auth::id(),
              "cover_img"=>$path ?? "DefaultImage",
+             
          ]);
 
         // $data= $request->all();
         // $project= Project::create($data);
 
-        return redirect()->route('admin.projects.show', $project->id);
+        return redirect()->route('admin.projects.show', compact('project', 'types'));
     }
 
     /**
@@ -88,7 +95,10 @@ class ProjectController extends Controller
         if (!$project) {
             abort(404, "Not found the project!");
         }
-        return view('admin.projects.edit', compact('project'));
+
+        $types = Type::all();
+
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**

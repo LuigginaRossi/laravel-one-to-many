@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
+
+    protected $fillable= ["name"];
+    //a una tipologia possono corrispondere più progetti 
+    public function projects(){
+        return $this->hasMany(Project::class);
+    }
 }

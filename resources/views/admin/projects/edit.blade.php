@@ -16,7 +16,7 @@
             class="form-control @error('name') is-invalid @elseif(old('name')) is-valid  @enderror"
             value="{{$project->description}}"
             name="name">
-            
+
             @error('name')
                 <div class="invalid-feedback">
                 {{ $message }}
@@ -28,6 +28,18 @@
                 </div> --}}
             @enderror
         </div>
+
+        
+            {{-- type -input --}}
+            <div class="mb-3">
+              <label class="form-label">Typology</label>
+              <select class="form-select" name="type_id">
+                @foreach ($types as $type )
+                  <option value="{{$type->id}}">{{$type->name}}</option>
+                @endforeach
+              </select>
+            </div>
+
 
         {{-- description-input --}}
         <div class="mb-3">
