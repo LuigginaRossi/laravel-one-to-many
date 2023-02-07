@@ -33,7 +33,7 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types' ));
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -119,7 +119,12 @@ class ProjectController extends Controller
             Storage::delete($project->cover_img);
         }
 
-        $project->update($data);
+        $project->update([
+            ...$data,
+            "user_id" =>Auth::id(),
+            "cover_img"=>$path ?? $project->cover_img,
+            
+        ]);
 
         return redirect()->route('admin.projects.show', $id);
     }

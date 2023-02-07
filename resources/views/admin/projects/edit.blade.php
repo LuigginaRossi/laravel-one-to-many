@@ -6,9 +6,9 @@
     <h1>Edit Project</h1>
 
 
-        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
+        @method('PUT')
         @csrf
-
         {{-- name-input --}}
         <div class="mb-3">
             <label class="form-label">Name Project</label>

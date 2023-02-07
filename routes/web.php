@@ -22,17 +22,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//per utente loggato
+//per utente loggato            //verified->controlla che l'email sia verificata
 Route::middleware(['auth', 'verified'])
     ->prefix('admin') //porzione uri
     ->name('admin.')    //name rotta
     ->group(function (){
         
-        Route::resource('/projects', ProjectController::class);
-        Route::resource('/categories', CategoryController::class);
-        //queste iniziano tutte con nomi :admin. rotte: admin/
-        // php artisan route:list
-    });
+    Route::resource('/projects', ProjectController::class);
+    Route::resource('/categories', CategoryController::class);
+    //Route::resource('/types', TypeController::class);
+    //php artisan make:controller Admin/TypeController --resource
+    //queste iniziano tutte con nomi :admin. rotte: admin/
+    // php artisan route:list
+});
 
 //Utente non loggato:
 // Route::get('/post', [PublicPostController::class, 'index'])->name('post.index');

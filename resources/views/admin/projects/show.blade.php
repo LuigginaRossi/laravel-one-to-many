@@ -9,7 +9,9 @@
             <img src="{{asset('/storage/'.  $project->cover_img)}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Titolo:{{$project->name}}</h5>
-              <h5 class="card-title">Tipologia: {{$project->type->name ?? ''}}</h5>
+              {{-- @dump($project->types) errore null --}}
+              <h5 class="card-title">Tipologia: {{$types->name ?? ''}}</h5>
+        
 
               <p class="card-text">{{$project->description}}</p>
               <a href="{{$project->github_link}}">

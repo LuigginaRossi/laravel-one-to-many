@@ -30,7 +30,7 @@ class StoreProjectRequest extends FormRequest
         return [
             "name"=> "required|string|min:5",
             "description"=>"required|string",
-            "cover_img"=>"required|image",
+            "cover_img"=>"nullable|image",
             "github_link"=>"nullable|string|url",
             "completed"=> "boolean",
         ];
