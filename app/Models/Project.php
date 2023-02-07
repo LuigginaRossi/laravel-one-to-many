@@ -11,7 +11,7 @@ class Project extends Model
     protected $fillable= ["name", "description", "cover_img", "github_link", "completed", "type_id"];
 
     //un projetto corrisponde a una sola tipologia
-    public function tipe(){
+    public function type(){
         return $this->belongsTo(Type::class);
     }
 }

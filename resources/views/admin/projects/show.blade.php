@@ -10,7 +10,7 @@
             <div class="card-body">
               <h5 class="card-title">Titolo:{{$project->name}}</h5>
               {{-- @dump($project->types) errore null --}}
-              <h5 class="card-title">Tipologia: {{$types->name ?? ''}}</h5>
+              <h5 class="card-title">Tipologia: {{$project->type->name ?? ''}}</h5>
         
 
               <p class="card-text">{{$project->description}}</p>
