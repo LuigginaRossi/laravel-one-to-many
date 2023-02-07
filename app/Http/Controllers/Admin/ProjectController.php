@@ -21,8 +21,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects= Project::All();
-        // $types = Type::all();
-        return view('admin.projects.index', compact('projects'));
+        $types = Type::all();
+        return view('admin.projects.index', compact('projects', 'types'));
     }
 
     /**
@@ -123,7 +123,6 @@ class ProjectController extends Controller
             ...$data,
             "user_id" =>Auth::id(),
             "cover_img"=>$path ?? $project->cover_img,
-            
         ]);
 
         return redirect()->route('admin.projects.show', $id);

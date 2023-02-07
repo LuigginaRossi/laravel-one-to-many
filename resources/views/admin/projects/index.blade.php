@@ -10,9 +10,11 @@
             @foreach ($projects as $project)
                 <div class="col">
                     <div class="card">
-                        <img src="{{asset('/storage/'.  $project->cover_img)}}" class="card-img-top" alt="...">
+                        <img src="{{asset('/storage/'.  $project->cover_img)}}" class="card-img-top" alt="cover image">
                         <div class="card-body pt-5">
                             <h5 class="card-title"> {{$project->name}}</h5>
+                            
+                            <h5 class="card-title"> {{ $project->type ? $project->type->name : ' ' }}</h5>
                             <p class="card-text">{{Str::limit($project->description , 30)}}</p>
             
                             <div class="d-flex gap-3 pt-4">
