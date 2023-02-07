@@ -2,10 +2,12 @@
 
 @section('content')
     {{-- creo la mia tabella --}}
-            {{-- aggiungo bottone aggiungo categoria --}}
-            <a href="{{route('admin.projects.create')}}">Create</a>
+            
     <div class="container">
-        
+
+        {{-- aggiungo bottone aggiungo categoria --}}
+        <a  class="btn btn-warning my-4" href="{{route('admin.projects.create')}}">Create</a>
+
         <div class="row row-cols-1 row-cols-md-4 g-4">
             @foreach ($projects as $project)
                 <div class="col">
